@@ -1,0 +1,79 @@
+diff -ur libident-0.22.orig/Makefile libident-0.22/Makefile
+--- libident-0.22.orig/Makefile	Fri Jan 17 20:10:55 1997
++++ libident-0.22/Makefile	Sat Jan  6 11:01:57 2001
+@@ -7,11 +7,12 @@
+ RM=rm -f
+ RANLIB=ranlib
+ AR=ar cq
++LD=ld
+ 
+-INSTROOT=/usr/local
++INSTROOT=/usr/
+ LIBDIR=$(INSTROOT)/lib
+ INCDIR=$(INSTROOT)/include
+-MANDIR=$(INSTROOT)/man/man3
++MANDIR=$(INSTROOT)/share/man/man3
+ 
+ #
+ # Add -g for debugging information
+@@ -19,10 +20,13 @@
+ # Add -DHAVE_ANSIHEADERS if your system have the ANSI C header files
+ # needed for our purposes (stdlib, string, unistd).
+ #
+-CFLAGS = -O
++#CFLAGS = RPM_OPT_FLAGS
+ 
+ LDLIBS =
+ LIBIDENT = libident.a
++SHLIBIDENT = libident.so
++SHLIB0 = libident.so.0
++SHLIB = libident.so.0.22
+ 
+ OBJS = ident.o id_open.o id_close.o id_query.o id_parse.o support.o version.o
+ 
+@@ -48,13 +52,16 @@
+ 	@echo other
+ 
+ 
+-all: 	$(LIBIDENT)
++all: 	$(LIBIDENT) $(SHLIBIDENT)
+ 
+ $(LIBIDENT):	$(OBJS)
+ 	-$(RM) $(LIBIDENT)
+ 	$(AR) $(LIBIDENT) $(OBJS)
+ 	-$(RANLIB) $(LIBIDENT)
+ 
++$(SHLIBIDENT):	$(OBJS)
++	$(CC) -shared -D_REENTRANT -lc -Wl,-soname,$(SHLIB0) -o $@ $(OBJS)
++
+ testers: lookup-tester ident-tester
+ 
+ ident-tester: $(LIBIDENT) ident-tester.o
+@@ -83,7 +90,7 @@
+ 
+ install:
+ 	-$(RM) $(LIBDIR)/$(LIBIDENT)
+-	cp $(LIBIDENT) $(LIBDIR)/$(LIBIDENT)
++	cp $(LIBIDENT) $(SHLIBIDENT) $(LIBDIR)/
+ 	-$(RANLIB) $(LIBDIR)/$(LIBIDENT)
+ 	-$(RM) $(INCDIR)/ident.h
+ 	cp ident.h $(INCDIR)/ident.h
+@@ -91,7 +98,8 @@
+ 	cp ident.3 $(MANDIR)/ident.3
+ 
+ clean:
+-	-$(RM) $(LIBIDENT) ident-tester lookup-tester *~ core *.o \#*
++	-$(RM) $(LIBIDENT) $(LIBSHAREIDENT) ident-tester lookup-tester *~ \
++	core *.o #*
+ 
+ #
+ 
+@@ -140,7 +148,7 @@
+ #
+ #
+ linux:
+-	@$(MAKE) all CC="gcc" CFLAGS="-O -DHAVE_ANSIHEADERS"
++	@$(MAKE) all CC="gcc" CFLAGS="$(CFLAGS) -DHAVE_ANSIHEADERS"
+ 
+ #
+ #
