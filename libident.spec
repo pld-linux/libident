@@ -12,8 +12,6 @@ Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%name-%version.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	_prefix	/usr
-
 %description
 LibIdent is a library which provides ident support in application.
 
@@ -30,10 +28,10 @@ Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
-LibIdent - header files
+LibIdent - header files.
 
 %description -l pl devel
-LibIdent - pliki nag³ówkowe
+LibIdent - pliki nag³ówkowe.
 
 %package static
 Summary:	LibIdent - Static Library
@@ -45,10 +43,10 @@ Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
-LibIdent - Static Library
+LibIdent - Static Library.
 
 %description -l pl static
-LibIdent - Biblioteka statyczna
+LibIdent - Biblioteka statyczna.
 
 %prep
 %setup -q
@@ -64,21 +62,20 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man3,%{_includedir}}
 
 %{__make} INSTROOT=$RPM_BUILD_ROOT%{_prefix} install
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man3/* \
-	README
+gzip -9nf README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz
-%{_libdir}/libident.so
+%attr(755,root,root) %{_libdir}/libident.so
 
 %files devel
 %defattr(644,root,root,755)
+%doc *.gz
 %{_includedir}/ident.h
-%{_mandir}/man3/ident*gz
+%{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
