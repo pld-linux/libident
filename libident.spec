@@ -5,13 +5,6 @@ Version:	0.22
 Release:	2
 License:	GPL
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%name-%version.tar.gz
 Patch0:		%{name}-DESTDIR.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -26,13 +19,6 @@ LibIdent jest bibliotek╠ udostЙpniaj╠c╠ interfejs do usЁugi ident.
 Summary:	LibIdent - header files
 Summary(pl):	LibIdent - pliki nagЁСwkowe
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -45,13 +31,6 @@ LibIdent - pliki nagЁСwkowe.
 Summary:	LibIdent - Static Library
 Summary(pl):	LibIdent - Biblioteka statyczna
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
