@@ -36,29 +36,30 @@ diff -ur libident-0.22.orig/Makefile libident-0.22/Makefile
  
  
 -all: 	$(LIBIDENT)
-+all: 	$(LIBIDENT) $(SHLIBIDENT)
++all: 	$(LIBIDENT) $(SHLIB)
  
  $(LIBIDENT):	$(OBJS)
  	-$(RM) $(LIBIDENT)
  	$(AR) $(LIBIDENT) $(OBJS)
  	-$(RANLIB) $(LIBIDENT)
  
-+$(SHLIBIDENT):	$(OBJS)
++$(SHLIB):	$(OBJS)
 +	$(CC) -shared -D_REENTRANT -lc -Wl,-soname,$(SHLIB0) -o $@ $(OBJS)
 +
  testers: lookup-tester ident-tester
  
  ident-tester: $(LIBIDENT) ident-tester.o
-@@ -83,7 +90,7 @@
+@@ -83,7 +90,8 @@
  
  install:
  	-$(RM) $(LIBDIR)/$(LIBIDENT)
 -	cp $(LIBIDENT) $(LIBDIR)/$(LIBIDENT)
-+	cp $(LIBIDENT) $(SHLIBIDENT) $(LIBDIR)/
++	cp $(LIBIDENT) $(SHLIB) $(LIBDIR)
++	ln -sf $(SHLIB) $(LIBDIR)/$(SHLIBIDENT)
  	-$(RANLIB) $(LIBDIR)/$(LIBIDENT)
  	-$(RM) $(INCDIR)/ident.h
  	cp ident.h $(INCDIR)/ident.h
-@@ -91,7 +98,8 @@
+@@ -91,7 +99,8 @@
  	cp ident.3 $(MANDIR)/ident.3
  
  clean:
@@ -68,7 +69,7 @@ diff -ur libident-0.22.orig/Makefile libident-0.22/Makefile
  
  #
  
-@@ -140,7 +148,7 @@
+@@ -140,7 +149,7 @@
  #
  #
  linux:
