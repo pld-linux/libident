@@ -2,7 +2,7 @@ Summary:	LibIdent - Library
 Summary(pl):	LibIdent - Biblioteka
 Name:		libident
 Version:	0.22
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Group(de):	Libraries
@@ -66,6 +66,9 @@ gzip -9nf README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
