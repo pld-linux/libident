@@ -54,7 +54,7 @@ LibIdent - Biblioteka statyczna.
 %patch -p1
 
 %build
-%{__make} CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" linux
+%{__make} CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}" linux
 
 %install
 rm -rf $RPM_BUILD_ROOT
