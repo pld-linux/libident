@@ -2,8 +2,8 @@ Summary:	LibIdent - Library
 Summary(pl):	LibIdent - Biblioteka
 Name:		libident
 Version:	0.22
-Release:	3
-License:	GPL
+Release:	4
+License:	Public Domain
 Group:		Libraries
 Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%{name}-%{version}.tar.gz
 # Source0-md5:	218b6706e574ca5b41a0a675cf1860eb
@@ -20,7 +20,7 @@ LibIdent jest bibliotek± udostêpniaj±c± interfejs do us³ugi ident.
 Summary:	LibIdent - header files
 Summary(pl):	LibIdent - pliki nag³ówkowe
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 LibIdent - header files.
@@ -32,7 +32,7 @@ LibIdent - pliki nag³ówkowe.
 Summary:	LibIdent - Static Library
 Summary(pl):	LibIdent - Biblioteka statyczna
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 LibIdent - Static Library.
@@ -45,13 +45,16 @@ LibIdent - Biblioteka statyczna.
 %patch0 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}" linux
+%{__make} all \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -fPIC -DHAVE_ANSIHEADERS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man3,%{_includedir}}
 
-%{__make} INSTROOT=$RPM_BUILD_ROOT%{_prefix} install
+%{__make} install \
+	INSTROOT=$RPM_BUILD_ROOT%{_prefix}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -61,11 +64,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libident.so
+%doc README
+%attr(755,root,root) %{_libdir}/libident.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc README
+%attr(755,root,root) %{_libdir}/libident.so
 %{_includedir}/ident.h
 %{_mandir}/man3/*
 
