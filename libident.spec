@@ -5,7 +5,7 @@ Version:	0.22
 Release:	3
 License:	GPL
 Group:		Libraries
-Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%name-%version.tar.gz
+Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%{name}-%{version}.tar.gz
 # Source0-md5:	218b6706e574ca5b41a0a675cf1860eb
 Patch0:		%{name}-DESTDIR.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
