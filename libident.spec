@@ -2,7 +2,7 @@ Summary:	LibIdent - Library
 Summary(pl):	LibIdent - Biblioteka
 Name:		libident
 Version:	0.22
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%name-%version.tar.gz
@@ -52,8 +52,6 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man3,%{_includedir}}
 
 %{__make} INSTROOT=$RPM_BUILD_ROOT%{_prefix} install
 
-gzip -9nf README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -66,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README
 %{_includedir}/ident.h
 %{_mandir}/man3/*
 
