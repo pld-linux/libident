@@ -24,7 +24,7 @@ Requires:	%{name} = %{version}
 %description devel
 LibIdent - header files.
 
-%description -l pl devel
+%description devel -l pl
 LibIdent - pliki nag³ówkowe.
 
 %package static
@@ -36,7 +36,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 LibIdent - Static Library.
 
-%description -l pl static
+%description static -l pl
 LibIdent - Biblioteka statyczna.
 
 %prep
