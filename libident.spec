@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%name-%version.tar.gz
@@ -50,11 +51,10 @@ LibIdent - Biblioteka statyczna.
 
 %prep
 %setup -q
-
-%patch -p1
+%patch0 -p1
 
 %build
-%{__make} CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}" linux
+%{__make} CFLAGS="%{rpmcflags}" linux
 
 %install
 rm -rf $RPM_BUILD_ROOT
