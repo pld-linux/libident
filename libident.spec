@@ -1,5 +1,5 @@
 Summary:	LibIdent - Library
-Summary(pl):	LibIdent - Biblioteka
+Summary(pl.UTF-8):   LibIdent - Biblioteka
 Name:		libident
 Version:	0.22
 Release:	5
@@ -13,31 +13,31 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 LibIdent is a library which provides ident support in application.
 
-%description -l pl
-LibIdent jest bibliotek± udostêpniaj±c± interfejs do us³ugi ident.
+%description -l pl.UTF-8
+LibIdent jest bibliotekÄ… udostÄ™pniajÄ…cÄ… interfejs do usÅ‚ugi ident.
 
 %package devel
 Summary:	LibIdent - header files
-Summary(pl):	LibIdent - pliki nag³ówkowe
+Summary(pl.UTF-8):   LibIdent - pliki nagÅ‚Ã³wkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 LibIdent - header files.
 
-%description devel -l pl
-LibIdent - pliki nag³ówkowe.
+%description devel -l pl.UTF-8
+LibIdent - pliki nagÅ‚Ã³wkowe.
 
 %package static
 Summary:	LibIdent - Static Library
-Summary(pl):	LibIdent - Biblioteka statyczna
+Summary(pl.UTF-8):   LibIdent - Biblioteka statyczna
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 LibIdent - Static Library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 LibIdent - Biblioteka statyczna.
 
 %prep
