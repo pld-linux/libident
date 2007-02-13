@@ -1,5 +1,5 @@
 Summary:	LibIdent - Library
-Summary(pl.UTF-8):   LibIdent - Biblioteka
+Summary(pl.UTF-8):	LibIdent - Biblioteka
 Name:		libident
 Version:	0.22
 Release:	5
@@ -18,7 +18,7 @@ LibIdent jest biblioteką udostępniającą interfejs do usługi ident.
 
 %package devel
 Summary:	LibIdent - header files
-Summary(pl.UTF-8):   LibIdent - pliki nagłówkowe
+Summary(pl.UTF-8):	LibIdent - pliki nagłówkowe
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -30,7 +30,7 @@ LibIdent - pliki nagłówkowe.
 
 %package static
 Summary:	LibIdent - Static Library
-Summary(pl.UTF-8):   LibIdent - Biblioteka statyczna
+Summary(pl.UTF-8):	LibIdent - Biblioteka statyczna
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
