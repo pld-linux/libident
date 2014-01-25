@@ -1,13 +1,15 @@
 Summary:	LibIdent - Library
 Summary(pl.UTF-8):	LibIdent - Biblioteka
 Name:		libident
-Version:	0.22
-Release:	5
+Version:	0.32
+Release:	1
 License:	Public Domain
 Group:		Libraries
-Source0:	ftp://ftp.lysator.liu.se/pub/ident/libs/%{name}-%{version}.tar.gz
-# Source0-md5:	218b6706e574ca5b41a0a675cf1860eb
-Patch0:		%{name}-DESTDIR.patch
+Source0:	http://www.remlab.net/files/libident/%{name}-%{version}.tar.bz2
+# Source0-md5:	f567aaf43eb1fa60d15b87e09a7fca5d
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,20 +44,22 @@ LibIdent - Biblioteka statyczna.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__make} all \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fPIC -DHAVE_ANSIHEADERS"
+%{__libtoolize}
+%{__aclocal} -I.
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man3,%{_includedir}}
 
 %{__make} install \
-	INSTROOT=$RPM_BUILD_ROOT%{_prefix} \
-	LIBDIR=$RPM_BUILD_ROOT%{_libdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,8 +69,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc AUTHORS COPYING README 
 %attr(755,root,root) %{_libdir}/libident.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libident.so.0
 
 %files devel
 %defattr(644,root,root,755)
