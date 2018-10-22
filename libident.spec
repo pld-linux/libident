@@ -2,7 +2,7 @@ Summary:	LibIdent - Ident protocol client library
 Summary(pl.UTF-8):	LibIdent - biblioteka kliencka dla protokołu Ident
 Name:		libident
 Version:	0.32
-Release:	1
+Release:	2
 License:	Public Domain
 Group:		Libraries
 Source0:	http://www.remlab.net/files/libident/%{name}-%{version}.tar.bz2
