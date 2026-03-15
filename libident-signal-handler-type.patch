@@ -1,0 +1,11 @@
+--- libident-0.32/id_query.c.orig	2013-04-21 18:04:16.000000000 +0200
++++ libident-0.32/id_query.c	2026-03-15 12:00:00.000000000 +0100
+@@ -34,7 +34,7 @@
+
+ int id_query (ident_t *id, int lport, int fport, struct timeval *timeout)
+ {
+-    RETSIGTYPE (*old_sig)();
++    void (*old_sig)(int);
+     int res;
+     char buf[80];
+     fd_set ws;

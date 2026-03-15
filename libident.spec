@@ -2,11 +2,12 @@ Summary:	LibIdent - Ident protocol client library
 Summary(pl.UTF-8):	LibIdent - biblioteka kliencka dla protokołu Ident
 Name:		libident
 Version:	0.32
-Release:	2
+Release:	3
 License:	Public Domain
 Group:		Libraries
 Source0:	http://www.remlab.net/files/libident/%{name}-%{version}.tar.bz2
 # Source0-md5:	f567aaf43eb1fa60d15b87e09a7fca5d
+Patch0:		%{name}-signal-handler-type.patch
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	libtool
@@ -46,6 +47,7 @@ LibIdent - biblioteka statyczna.
 
 %prep
 %setup -q
+%patch -P0 -p1
 
 %build
 %{__libtoolize}
